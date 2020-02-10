@@ -1,5 +1,3 @@
-var path = require('path');
-
 var isAuthenticated = require("../../config/middleware/isAuthenticated");
 
 module.exports = (app)=> {
@@ -7,7 +5,8 @@ module.exports = (app)=> {
         if(req.user){
             res.redirect("/members");
         }
-        res.sendFile(path.join(__dirname, "../../public/signup.html"));
+        res.render('signup');
+        
     });
 
     app.get("/login", (req, res)=> {
@@ -15,11 +14,11 @@ module.exports = (app)=> {
         if (req.user) {
           res.redirect("/members");
         }
-        res.sendFile(path.join(__dirname, "../../public/login.html"));
+        res.render("login");
       });
       
     app.get("/members", isAuthenticated, (req, res)=>{
-        res.sendFile(path.join(__dirname, "../../public/members.html"));
+        res.render("members");
     });
 
 }

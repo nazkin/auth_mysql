@@ -5,11 +5,15 @@ var passport = require('./config/passport')
 var PORT = process.env.PORT || 8080;
 
 var db = require("./models");
-
+var exphbs = require("express-handlebars");
 var app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(express.static("public"));
+
+
+// for using handlebars
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.set("view engine", "handlebars");
 
 //Using passport as configured 
 app.use(session({secret: "amazingandalways awesome", resave:true, saveUninitialized: true}));
