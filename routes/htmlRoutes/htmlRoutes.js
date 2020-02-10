@@ -2,10 +2,10 @@ var isAuthenticated = require("../../config/middleware/isAuthenticated");
 
 module.exports = (app)=> {
     app.get("/", (req,res)=> {
-        if(req.user){
-            res.redirect("/members");
-        }
-        res.render('signup');
+        // if(req.user){
+        //     res.redirect("/members");
+        // }
+        res.redirect('/signup');
         
     });
 
